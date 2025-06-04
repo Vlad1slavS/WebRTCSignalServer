@@ -1,0 +1,86 @@
+@startuml
+package "model.entity" {
+  class User
+  class Room
+  class CallSession
+  class RoomEvent
+}
+
+package "model.enums" {
+  enum UserStatus
+  enum RoomStatus
+  enum RoomType
+  enum ConnectionStatus
+  enum MediaQuality
+  enum EventType
+}
+
+package "repository" {
+  interface UserRepository
+  interface RoomRepository
+  interface CallSessionRepository
+  interface RoomEventRepository
+}
+
+package "service" {
+  class UserService
+  class RoomService
+  class CallSessionService
+  class SignalingService
+  class NotificationService
+  class RoomEventService
+  class JwtService
+}
+
+package "controller" {
+  class AuthController
+  class RoomController
+  class UserController
+}
+
+package "security" {
+  class JwtRequestFilter
+  class CustomUserDetails
+}
+
+package "websocket" {
+  class SocketIOEventHandlers
+}
+
+package "exception" {
+  class GlobalExceptionHandler
+}
+
+User --> UserStatus : uses
+Room --> RoomStatus : uses
+Room --> RoomType : uses
+CallSession --> ConnectionStatus : uses
+CallSession --> MediaQuality : uses
+RoomEvent --> EventType : uses
+
+UserRepository --> User : manages
+RoomRepository --> Room : manages
+CallSessionRepository --> CallSession : manages
+RoomEventRepository --> RoomEvent : manages
+
+UserService --> UserRepository : uses
+RoomService --> RoomRepository : uses
+CallSessionService --> CallSessionRepository : uses
+RoomEventService --> RoomEventRepository : uses
+
+AuthController --> UserService : uses
+AuthController --> JwtService : uses
+RoomController --> RoomService : uses
+RoomController --> CallSessionService : uses
+UserController --> UserService : uses
+
+SocketIOEventHandlers --> SignalingService : uses
+SocketIOEventHandlers --> NotificationService : uses
+
+JwtRequestFilter --> JwtService : uses
+CustomUserDetails --> User : extends
+
+GlobalExceptionHandler --> AuthController : handles
+GlobalExceptionHandler --> RoomController : handles
+GlobalExceptionHandler --> UserController : handles
+@enduml

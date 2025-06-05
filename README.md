@@ -10,7 +10,6 @@
   <img src="https://img.shields.io/badge/WebRTC-Enabled-blue?style=flat-square&logo=webrtc" alt="WebRTC">
   <img src="https://img.shields.io/badge/PostgreSQL-16-blue?style=flat-square&logo=postgresql" alt="PostgreSQL">
   <img src="https://img.shields.io/badge/Redis-7.0+-red?style=flat-square&logo=redis" alt="Redis">
-  <img src="https://img.shields.io/badge/WebSocket-Real--time-green?style=flat-square&logo=socketdotio" alt="WebSocket">
 </p>
 
 <p align="center">
